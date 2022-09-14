@@ -1,0 +1,79 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<commonFolder>$(MSBuildProjectDirectory)\..\common</commonFolder>
+		<In>$([System.IO.File]::ReadAllText('$(MSBuildProjectDirectory)\Properties\AssemblyInfo.cs'))</In>
+		<In3>$([System.IO.File]::ReadAllText('$(commonFolder)\SharedGenericInfo.cs'))</In3>
+		<Pattern>^\s*\[assembly: AssemblyFileVersion\(\D*(\d+)\.(\d+)\.(\d+)\.(\d+)</Pattern>
+		<Pattern2>^\s*\[assembly: AssemblyTitle\("([^"]*)"</Pattern2>
+		<Pattern3>^\s*\[assembly: AssemblyInformationalVersion\("([^"]*)"</Pattern3>
+		<Pattern4>^\s*\[assembly: AssemblyCopyright\("([^"]*)"</Pattern4>
+		<AssemblyFileMajorVersion>$([System.Text.RegularExpressions.Regex]::Match($(In), $(Pattern), System.Text.RegularExpressions.RegexOptions.Multiline).Groups[1].Value)</AssemblyFileMajorVersion>
+		<AssemblyFileMinorVersion>$([System.Text.RegularExpressions.Regex]::Match($(In), $(Pattern), System.Text.RegularExpressions.RegexOptions.Multiline).Groups[2].Value)</AssemblyFileMinorVersion>
+		<AssemblyFilePatchVersion>$([System.Text.RegularExpressions.Regex]::Match($(In), $(Pattern), System.Text.RegularExpressions.RegexOptions.Multiline).Groups[4].Value)</AssemblyFilePatchVersion>
+		<AssemblyTitle>$([System.Text.RegularExpressions.Regex]::Match($(In), $(Pattern2), System.Text.RegularExpressions.RegexOptions.Multiline).Groups[1].Value)</AssemblyTitle>
+		<AssemblyCopyright>$([System.Text.RegularExpressions.Regex]::Match($(In3), $(Pattern4), System.Text.RegularExpressions.RegexOptions.Multiline).Groups[1].Value)</AssemblyCopyright>
+		<AssemblyCompany>$([System.Text.RegularExpressions.Regex]::Match($(In3), $(Pattern5), System.Text.RegularExpressions.RegexOptions.Multiline).Groups[1].Value)</AssemblyCompany>
+		<SemanticVersion>$(AssemblyFileMajorVersion).$(AssemblyFileMinorVersion).$(AssemblyFilePatchVersion)</SemanticVersion>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageOutputPath>$(MSBuildProjectDirectory)\..\nuget\</PackageOutputPath>
+		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+		<Description>This package contains common http concerns functionality.</Description>
+		<PackageVersion>$(SemanticVersion)</PackageVersion>
+		<Authors>$(AssemblyCompany)</Authors>
+		<Copyright>$(AssemblyCopyright)</Copyright>
+		<ProjectGuid>{5F78FBAF-38BB-431B-9394-8277E2DAAB36}</ProjectGuid>
+		<AssemblyName>VO.Essentials.Http</AssemblyName>
+		<RootNamespace>VO.Essentials.Http</RootNamespace>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<T4ParameterValues Include="commonFolder">
+			<Value>$(commonFolder)</Value>
+		</T4ParameterValues>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Include="$(commonFolder)\SharedProductInfo.cs" Link="Properties\SharedProductInfo.cs" />
+		<Compile Include="$(commonFolder)\SharedGenericInfo.cs" Link="Properties\SharedGenericInfo.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>SharedGenericInfo.tt</DependentUpon>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="$(commonFolder)\SharedGenericInfo.tt" Link="Properties\SharedGenericInfo.tt" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="Properties\AssemblyInfo.tt">
+			<Generator>TextTemplatingFileGenerator</Generator>
+			<LastGenOutput>AssemblyInfo.cs</LastGenOutput>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Update="Properties\AssemblyInfo.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>AssemblyInfo.tt</DependentUpon>
+		</Compile>
+	</ItemGroup>
+
+	<Target Name="DeletePreviouslyCreatedNugetPackages" BeforeTargets="BeforeBuild">
+		<ItemGroup>
+			<FilesToDelete Include="$(MSBuildProjectDirectory)\..\nuget\$(ProjectName).*.nupkg" />
+		</ItemGroup>
+		<Delete Files="@(FilesToDelete)" />
+	</Target>
+</Project>
