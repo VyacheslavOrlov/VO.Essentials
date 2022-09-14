@@ -13,7 +13,6 @@
 		<AssemblyFilePatchVersion>$([System.Text.RegularExpressions.Regex]::Match($(In), $(Pattern), System.Text.RegularExpressions.RegexOptions.Multiline).Groups[4].Value)</AssemblyFilePatchVersion>
 		<AssemblyTitle>$([System.Text.RegularExpressions.Regex]::Match($(In), $(Pattern2), System.Text.RegularExpressions.RegexOptions.Multiline).Groups[1].Value)</AssemblyTitle>
 		<AssemblyCopyright>$([System.Text.RegularExpressions.Regex]::Match($(In3), $(Pattern4), System.Text.RegularExpressions.RegexOptions.Multiline).Groups[1].Value)</AssemblyCopyright>
-		<AssemblyCompany>$([System.Text.RegularExpressions.Regex]::Match($(In3), $(Pattern5), System.Text.RegularExpressions.RegexOptions.Multiline).Groups[1].Value)</AssemblyCompany>
 		<SemanticVersion>$(AssemblyFileMajorVersion).$(AssemblyFileMinorVersion).$(AssemblyFilePatchVersion)</SemanticVersion>
 	</PropertyGroup>
 
@@ -25,7 +24,7 @@
 		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
 		<Description>This package contains common http concerns functionality.</Description>
 		<PackageVersion>$(SemanticVersion)</PackageVersion>
-		<Authors>$(AssemblyCompany)</Authors>
+		<Authors>Vyacheslav Orlov</Authors>
 		<Copyright>$(AssemblyCopyright)</Copyright>
 		<ProjectGuid>{5F78FBAF-38BB-431B-9394-8277E2DAAB36}</ProjectGuid>
 		<AssemblyName>VO.Essentials.Http</AssemblyName>
@@ -68,6 +67,10 @@
 			<AutoGen>True</AutoGen>
 			<DependentUpon>AssemblyInfo.tt</DependentUpon>
 		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
 	</ItemGroup>
 
 	<Target Name="DeletePreviouslyCreatedNugetPackages" BeforeTargets="BeforeBuild">
