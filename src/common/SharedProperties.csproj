@@ -1,0 +1,20 @@
+<Project>
+		<PropertyGroup>
+				<ImplicitUsings>enable</ImplicitUsings>
+				<Nullable>enable</Nullable>
+				
+				<Product>VO.Essentials</Product>
+				<Description>Essentials</Description>
+				<Copyright>Copyright © 2022</Copyright>
+				<Authors>Vyacheslav Orlov</Authors>
+				
+				<PackageProjectUrl>https://github.com/VyacheslavOrlov/VO.Essentials</PackageProjectUrl>
+				<PackageLicenseExpression>MIT</PackageLicenseExpression>
+				<RepositoryType>git</RepositoryType>
+				<RepositoryUrl>https://github.com/VyacheslavOrlov/VO.Essentials</RepositoryUrl>
+				<PackageOutputPath>$(MSBuildProjectDirectory)\..\nuget\</PackageOutputPath>
+				<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		</PropertyGroup>
+
+
+</Project>
