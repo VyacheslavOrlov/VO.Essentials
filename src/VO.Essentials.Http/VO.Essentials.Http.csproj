@@ -1,14 +1,19 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-		<Import Project="$(MSBuildProjectDirectory)\..\common\SharedProperties.csproj" />
+		<Import Project="$(MSBuildProjectDirectory)\..\common\CommonProperties.props" />
+		<Import Project="$(MSBuildProjectDirectory)\..\common\PackageProperties.props" />
+		<Import Project="properties\Version.props" />
+		
 		<PropertyGroup>
+				<AssemblyTitle>VO.Essentials.Http</AssemblyTitle>
+				<AssemblyName>VO.Essentials.Http</AssemblyName>
 				<TargetFramework>net6.0</TargetFramework>
-				<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 				<Description>This package contains common http concerns functionality.</Description>
 		</PropertyGroup>
 		
 		<ItemGroup>
-		  <None Include="..\common\SharedProperties.csproj" Link="Properties\SharedProperties.csproj" />
+		  <None Include="$(MSBuildProjectDirectory)\..\common\CommonProperties.props" Link="Properties\CommonProperties.props" />
+			<None Include="$(MSBuildProjectDirectory)\..\common\PackageProperties.props" Link="Properties\PackageProperties.props" />
 		</ItemGroup>
 
 		<ItemGroup>

@@ -4,16 +4,13 @@
 				<Nullable>enable</Nullable>
 				
 				<Product>VO.Essentials</Product>
-				<Description>Essentials</Description>
-				<Copyright>Copyright © 2022</Copyright>
+				<Description>This package contains common concerns functionality.</Description>
+				<Copyright>Copyright © 2022, Vyacheslav Orlov</Copyright>
 				<Authors>Vyacheslav Orlov</Authors>
-				
+				<RepositoryType>git</RepositoryType>
 				<PackageProjectUrl>https://github.com/VyacheslavOrlov/VO.Essentials</PackageProjectUrl>
 				<PackageLicenseExpression>MIT</PackageLicenseExpression>
-				<RepositoryType>git</RepositoryType>
 				<RepositoryUrl>https://github.com/VyacheslavOrlov/VO.Essentials</RepositoryUrl>
-				<PackageOutputPath>$(MSBuildProjectDirectory)\..\nuget\</PackageOutputPath>
-				<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		</PropertyGroup>
 
 
