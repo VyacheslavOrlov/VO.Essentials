@@ -2,7 +2,7 @@
 
 		<Import Project="$(MSBuildProjectDirectory)\..\common\CommonProperties.props" />
 		<Import Project="$(MSBuildProjectDirectory)\..\common\PackageProperties.props" />
-		<Import Project="properties\Version.props" />
+		<Import Project="Properties\Version.props" />
 		
 		<PropertyGroup>
 				<AssemblyTitle>VO.Essentials.Http</AssemblyTitle>
