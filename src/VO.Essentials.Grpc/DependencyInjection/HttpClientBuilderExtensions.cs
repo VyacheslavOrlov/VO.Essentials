@@ -101,4 +101,10 @@ public static class HttpClientBuilderExtensions
             sp.GetRequiredService<TDep4>(),
             sp.GetRequiredService<TDep5>(),
             client));
+
+    public static IHttpClientBuilder Ddd(this IHttpClientBuilder builder)
+    {
+        var t = File.OpenRead("dasd.txt");
+        return builder;
+    }
 }
