@@ -1,10 +1,12 @@
-name: .NET
+name: ci
 
 on :
   push:
+  
+sln: VO.Essentials.sln
 
 jobs:
-  build:
+  ci:
 
     runs-on: ubuntu-latest
 
@@ -15,10 +17,17 @@ jobs:
       with:
         dotnet-version: 6.0.x
     - name: Restore dependencies
-      run: dotnet restore VO.Essentials.sln
+      run: dotnet restore ${{sln}}
     - name: Build
-      run: dotnet build VO.Essentials.sln --no-restore
+      run: dotnet build ${{sln}} --no-restore
     - name: Test
-      run: dotnet test VO.Essentials.sln --no-build --verbosity normal
+      run: dotnet test ${{sln}} --no-build --verbosity normal
+    - name: Code Analysis
+      uses: dotnet/code-analysis@v1
+      id: code-analysis
+      with:
+        solution: ${{sln}}
+        build-breaking: true
+        all-categories: all
     - name: Publish to Nuget 
       run: dotnet nuget push "**/src/nuget/*.nupkg" -s https://api.nuget.org/v3/index.json -k ${{secrets.NUGET_API_KEY}} --skip-duplicate -n 
