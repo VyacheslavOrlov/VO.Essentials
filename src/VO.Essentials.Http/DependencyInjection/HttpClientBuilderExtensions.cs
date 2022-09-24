@@ -18,7 +18,7 @@ public static class HttpClientBuilderExtensions
     /// <returns>An <see cref="IHttpClientBuilder"/> that can be used to configure the client.</returns>
     public static IHttpClientBuilder? ConfigureHttpClient<TDep1>(this IHttpClientBuilder builder, Action<TDep1, HttpClient> configureClient) 
         where TDep1 : class
-        => builder.ConfigureHttpClient((sp, client) => configureClient?.Invoke(sp.GetRequiredService<TDep1>(), client));
+        => builder.ConfigureHttpClient((sp, client) => configureClient?.Invoke(sp.GetRequiredService<TDep1>(), client)); 
 
     /// <summary>
     /// Configures the HTTP client.
