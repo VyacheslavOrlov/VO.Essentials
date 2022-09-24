@@ -15,10 +15,10 @@ jobs:
       with:
         dotnet-version: 6.0.x
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore VO.Essentials.sln
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build VO.Essentials.sln --no-restore
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test VO.Essentials.sln --no-build --verbosity normal
     - name: Publish to Nuget 
       run: dotnet nuget push "**/src/nuget/*.nupkg" -s https://api.nuget.org/v3/index.json -k ${{secrets.NUGET_API_KEY}} --skip-duplicate -n 
