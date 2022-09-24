@@ -1,8 +1,8 @@
 <Project>
 		<PropertyGroup>
-				<Major>0</Major>
-				<Minor>2</Minor>
-				<Revision>2</Revision>
+				<Major>1</Major>
+				<Minor>0</Minor>
+				<Revision>0</Revision>
 				<PrereleaseLabel>-alpha.1</PrereleaseLabel>
 
 				<AssemblyVersion>$(Major).$(Minor).$(Revision)</AssemblyVersion>
