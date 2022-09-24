@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+		<Import Project="$(MSBuildProjectDirectory)\..\common\CommonProperties.props" />
+		<Import Project="$(MSBuildProjectDirectory)\..\common\PackageProperties.props" />
+		<Import Project="Properties\Version.props" />
+		
+		<PropertyGroup>
+				<AssemblyTitle>VO.Essentials.Grpc</AssemblyTitle>
+				<AssemblyName>VO.Essentials.Grpc</AssemblyName>
+				<TargetFramework>net6.0</TargetFramework>
+				<Description>This package contains common Grpc concerns functionality.</Description>
+		</PropertyGroup>
+		
+		<ItemGroup>
+		  <None Include="$(MSBuildProjectDirectory)\..\common\CommonProperties.props" Link="Properties\CommonProperties.props" />
+			<None Include="$(MSBuildProjectDirectory)\..\common\PackageProperties.props" Link="Properties\PackageProperties.props" />
+		</ItemGroup>
+
+		<ItemGroup>
+		  <PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0" />
+		</ItemGroup>
+
+		<ItemGroup>
+		  <Service Include="{60754028-95C5-4179-9427-040EED6D2144}" />
+		</ItemGroup>
+
+</Project>
