@@ -3,7 +3,8 @@ name: ci
 on :
   push:
   
-sln: VO.Essentials.sln
+env:
+  sln: VO.Essentials.sln
 
 jobs:
   ci:
@@ -17,16 +18,16 @@ jobs:
       with:
         dotnet-version: 6.0.x
     - name: Restore dependencies
-      run: dotnet restore ${{sln}}
+      run: dotnet restore ${{env.sln}}
     - name: Build
-      run: dotnet build ${{sln}} --no-restore
+      run: dotnet build ${{env.sln}} --no-restore
     - name: Test
-      run: dotnet test ${{sln}} --no-build --verbosity normal
+      run: dotnet test ${{env.sln}} --no-build --verbosity normal
     - name: Code Analysis
       uses: dotnet/code-analysis@v1
       id: code-analysis
       with:
-        solution: ${{sln}}
+        solution: ${{env.sln}}
         build-breaking: true
         all-categories: all
     - name: Publish to Nuget 
