@@ -23,5 +23,10 @@ jobs:
       run: dotnet build ${{env.sln}} --no-restore
     - name: Test
       run: dotnet test ${{env.sln}} --no-build --verbosity normal
+    - name: Run .NET Code Analysis
+      uses: dotnet/code-analysis@v1
+      id: code-analysis
+      with:
+        build-breaking: true
     - name: Publish to Nuget 
       run: dotnet nuget push "**/src/nuget/*.nupkg" -s https://api.nuget.org/v3/index.json -k ${{secrets.NUGET_API_KEY}} --skip-duplicate -n 
