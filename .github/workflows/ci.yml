@@ -24,7 +24,7 @@ jobs:
     - name: Test
       run: dotnet test ${{env.sln}} --no-build --verbosity normal
     - name: Run .NET Code Analysis
-      uses: dotnet/code-analysis@v1
+      uses: dotnet/code-analysis@main
       id: code-analysis
       with:
         build-breaking: true
