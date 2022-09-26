@@ -32,5 +32,10 @@ jobs:
         solution: ${{env.sln}}
         build-breaking: false
         all-categories: all
+    - name: Upload analysis results
+      uses: actions/upload-artifact@v2
+      with:
+        name: analysis_results.sarif
+        path: "src/"
     - name: Publish to Nuget 
       run: dotnet nuget push "**/src/nuget/*.nupkg" -s https://api.nuget.org/v3/index.json -k ${{secrets.NUGET_API_KEY}} --skip-duplicate -n 
