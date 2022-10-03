@@ -25,16 +25,5 @@ jobs:
       run: dotnet build ${{env.sln}} --no-restore
     - name: Test
       run: dotnet test ${{env.sln}} --no-build --verbosity normal
-    - name: Run .NET Code Analysis
-      uses: dotnet/code-analysis@main
-      id: code-analysis
-      with:
-        solution: ${{env.sln}}
-        build-breaking: false
-    - name: Upload analysis results
-      uses: actions/upload-artifact@v2
-      with:
-        name: analysis_results.sarif
-        path: ${{ steps.code-analysis.outputs.sarifFile }}
     - name: Publish to Nuget 
       run: dotnet nuget push "**/src/nuget/*.nupkg" -s https://api.nuget.org/v3/index.json -k ${{secrets.NUGET_API_KEY}} --skip-duplicate -n 
