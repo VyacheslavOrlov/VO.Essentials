@@ -3,7 +3,7 @@
 				<Major>1</Major>
 				<Minor>0</Minor>
 				<Revision>0</Revision>
-				<PrereleaseLabel>-alpha.2</PrereleaseLabel>
+				<PrereleaseLabel>-alpha.3</PrereleaseLabel>
 
 				<AssemblyVersion>$(Major).$(Minor).$(Revision)</AssemblyVersion>
 				<AssemblyFileVersion>$(Major).$(Minor).$(Revision)</AssemblyFileVersion>
